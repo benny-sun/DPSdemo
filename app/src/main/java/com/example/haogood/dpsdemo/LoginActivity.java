@@ -16,31 +16,35 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    private Button btnRegister;
+    private Button btnLogin;
     private EditText editTextEmail, editTextPassword;
 
-    private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
-        btnRegister = (Button) findViewById(R.id.btnRegister);
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        btnLogin = (Button)findViewById(R.id.btnLogin);
         editTextEmail = (EditText)findViewById(R.id.editTextEmail);
         editTextPassword = (EditText)findViewById(R.id.editTextPassword);
-
         progressDialog = new ProgressDialog(this);
-        firebaseAuth = FirebaseAuth.getInstance();
     }
 
-
-    public void registerUser(){
+    public void loginUser(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+
+        if (firebaseAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
+            finish();
+        }
 
         if (TextUtils.isEmpty(email)){
             Toast.makeText(this, "請輸入信箱", Toast.LENGTH_LONG).show();
@@ -52,31 +56,30 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        progressDialog.setMessage("請稍候");
+        progressDialog.setMessage("登入中");
         progressDialog.show();
 
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if (task.isSuccessful()){
-                            Toast.makeText(MainActivity.this, "註冊成功", Toast.LENGTH_LONG);
                             startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
                             finish();
                         }else{
-                            Toast.makeText(MainActivity.this, "發生錯誤", Toast.LENGTH_LONG);
+                            Toast.makeText(LoginActivity.this, "信箱或密碼有錯誤", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
 
-    public void btnRegisterOnClick(View view){
-        registerUser();
+    public void btnLoginOnClick(View view){
+        loginUser();
     }
 
-    public void btnIntentLoginOnClick(View view){
-        startActivity(new Intent(this, LoginActivity.class));
+    public void btnIntentRegisterOnClick(View view){
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 }

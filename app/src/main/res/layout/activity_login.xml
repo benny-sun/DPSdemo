@@ -8,6 +8,14 @@
     android:orientation="vertical"
     tools:context="com.example.haogood.dpsdemo.MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DPS登入"
+        android:gravity="center"
+        android:paddingBottom="30sp"
+        android:textSize="30sp"/>
+
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
@@ -23,18 +31,18 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="btnRegisterOnClick"
-        android:text="註冊" />
+        android:onClick="btnLoginOnClick"
+        android:text="登入" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnIntentLogin"
-        android:onClick="btnIntentLoginOnClick"
+        android:id="@+id/btnIntentRegister"
+        android:onClick="btnIntentRegisterOnClick"
         android:paddingTop="10sp"
         android:gravity="right"
-        android:text="登入"/>
+        android:text="會員申請"/>
 </LinearLayout>
