@@ -30,6 +30,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
+            finish();
+        }
 
         btnLogin = (Button)findViewById(R.id.btnLogin);
         editTextEmail = (EditText)findViewById(R.id.editTextEmail);
@@ -40,11 +44,6 @@ public class LoginActivity extends AppCompatActivity {
     public void loginUser(){
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
-
-        if (firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
-            finish();
-        }
 
         if (TextUtils.isEmpty(email)){
             Toast.makeText(this, "請輸入信箱", Toast.LENGTH_LONG).show();

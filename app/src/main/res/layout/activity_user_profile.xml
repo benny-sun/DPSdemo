@@ -4,21 +4,29 @@
     android:id="@+id/activity_user_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_margin="20sp"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context="com.example.haogood.dpsdemo.UserProfileActivity">
 
     <TextView
+        android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:gravity="center"
         android:text="Profile"
-        android:gravity="center"/>
+        android:textSize="20sp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="登出"/>
+        android:onClick="btnMapOnClick"
+        android:text="Map" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnLogoutOnClick"
+        android:text="登出" />
 
 </LinearLayout>

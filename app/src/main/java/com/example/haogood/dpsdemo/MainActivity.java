@@ -29,12 +29,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null){
+            startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
+            finish();
+        }
+
         btnRegister = (Button) findViewById(R.id.btnRegister);
         editTextEmail = (EditText)findViewById(R.id.editTextEmail);
         editTextPassword = (EditText)findViewById(R.id.editTextPassword);
 
         progressDialog = new ProgressDialog(this);
-        firebaseAuth = FirebaseAuth.getInstance();
     }
 
 
