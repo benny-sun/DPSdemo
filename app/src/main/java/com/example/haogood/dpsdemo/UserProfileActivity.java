@@ -13,6 +13,8 @@ public class UserProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private TextView userName;
 
+    //github commit testing
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
