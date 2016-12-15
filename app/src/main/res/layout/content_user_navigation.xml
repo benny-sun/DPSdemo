@@ -12,5 +12,9 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.haogood.dpsdemo.UserNavigation"
     tools:showIn="@layout/app_bar_user_navigation">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello"/>
 
 </RelativeLayout>
