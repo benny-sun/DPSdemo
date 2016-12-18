@@ -82,11 +82,11 @@ public class UserProfileActivity extends AppCompatActivity {
 //        }
 //    }
 
-    public void btnLogoutOnClick(View view){
-        firebaseAuth.signOut();
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
-    }
+//    public void btnLogoutOnClick(View view){
+//        firebaseAuth.signOut();
+//        startActivity(new Intent(this, LoginActivity.class));
+//        finish();
+//    }
 
     public void btnMapOnClick(View view){
         startActivity(new Intent(this, MapsActivity.class));

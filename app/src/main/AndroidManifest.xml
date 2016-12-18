@@ -45,7 +45,8 @@
         <activity
             android:name=".UserNavigation"
             android:label="@string/title_activity_user_navigation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SettingActivity"></activity>
     </application>
 
 </manifest>

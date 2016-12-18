@@ -124,7 +124,7 @@ public class UserNavigation extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
-
+            startActivity(new Intent(this, SettingActivity.class));
         } else if (id == R.id.nav_send) {
             LogoutFragment logoutFragment = new LogoutFragment();
             fragmentManager.beginTransaction().replace(R.id.content_user_navigation, logoutFragment, logoutFragment.getTag()).commit();
