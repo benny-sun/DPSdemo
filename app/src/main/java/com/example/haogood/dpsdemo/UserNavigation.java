@@ -1,6 +1,9 @@
 package com.example.haogood.dpsdemo;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -14,14 +17,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class UserNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth firebaseAuth;
-    private TextView nav_userEmail;
+    private FirebaseUser user;
+    private TextView nav_userEmail, nav_userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +40,13 @@ public class UserNavigation extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+//        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+//                .setDisplayName("RRR")
+//                .setPhotoUri(Uri.EMPTY)
+//                .build();
+//        user.updateProfile(profileUpdate);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +69,11 @@ public class UserNavigation extends AppCompatActivity
         //已將nav_header_user_navigation.xml中的headerLayout刪除，在此用java生成，同時塞入後端資料
         View header = navigationView.inflateHeaderView(R.layout.nav_header_user_navigation);
         nav_userEmail = (TextView)header.findViewById(R.id.nav_userEmail);
-        nav_userEmail.setText(firebaseAuth.getCurrentUser().getEmail());
+        nav_userName = (TextView)header.findViewById(R.id.nav_userName);
+
+        nav_userEmail.setText(user.getEmail());
+        nav_userName.setText(user.getDisplayName());
+//        nav_userName.setText(""+user.updateProfile());
     }
 
     @Override
@@ -98,9 +118,9 @@ public class UserNavigation extends AppCompatActivity
             BlankFragment blankFragment = BlankFragment.newInstance("x1", "x2");
             fragmentManager.beginTransaction().replace(R.id.content_user_navigation, blankFragment, blankFragment.getTag()).commit();
         } else if (id == R.id.nav_gallery) {
-
+            startActivity(new Intent(this, MapsActivity.class));
         } else if (id == R.id.nav_slideshow) {
-
+            startActivity(new Intent(this, UserProfileActivity.class));
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

@@ -1,8 +1,10 @@
 package com.example.haogood.dpsdemo;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,10 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        if (firebaseAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
-            finish();
-        }
 
         btnLogin = (Button)findViewById(R.id.btnLogin);
         editTextEmail = (EditText)findViewById(R.id.editTextEmail);
@@ -42,16 +40,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginUser(){
+        final String emailRegex = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)){
+            editTextEmail.setError("請輸入信箱");
             Toast.makeText(this, "請輸入信箱", Toast.LENGTH_LONG).show();
+            return;
+        }else if(!email.matches(emailRegex)){
+            editTextEmail.setError("email格式有誤，請重新輸入");
+            Toast.makeText(this, "email格式有誤，請重新輸入", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(password)){
+            editTextPassword.setError("請輸入密碼");
             Toast.makeText(this, "請輸入密碼", Toast.LENGTH_LONG).show();
+            return;
+        }else if(password.length() < 6){
+            editTextPassword.setError("請輸入6~20位字元");
+            Toast.makeText(this, "請輸入6~20位字元", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -64,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if (task.isSuccessful()){
-                            startActivity(new Intent(getApplicationContext(), UserProfileActivity.class));
+                            startActivity(new Intent(getApplicationContext(), UserNavigation.class));
                             finish();
                         }else{
                             Toast.makeText(LoginActivity.this, "信箱或密碼有錯誤", Toast.LENGTH_LONG).show();
