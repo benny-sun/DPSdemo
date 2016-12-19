@@ -114,20 +114,15 @@ public class UserNavigation extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         FragmentManager fragmentManager = getSupportFragmentManager();
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_parking) {
             BlankFragment blankFragment = BlankFragment.newInstance("x1", "x2");
             fragmentManager.beginTransaction().replace(R.id.content_user_navigation, blankFragment, blankFragment.getTag()).commit();
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_record) {
             startActivity(new Intent(this, MapsActivity.class));
-        } else if (id == R.id.nav_slideshow) {
-            startActivity(new Intent(this, UserProfileActivity.class));
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_setting) {
             startActivity(new Intent(this, SettingActivity.class));
-        } else if (id == R.id.nav_send) {
-            LogoutFragment logoutFragment = new LogoutFragment();
-            fragmentManager.beginTransaction().replace(R.id.content_user_navigation, logoutFragment, logoutFragment.getTag()).commit();
+        } else if (id == R.id.nav_about) {
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
