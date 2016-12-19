@@ -114,12 +114,12 @@ public class UserNavigation extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
         if (id == R.id.nav_parking) {
-            BlankFragment blankFragment = BlankFragment.newInstance("x1", "x2");
-            fragmentManager.beginTransaction().replace(R.id.content_user_navigation, blankFragment, blankFragment.getTag()).commit();
-        } else if (id == R.id.nav_record) {
             startActivity(new Intent(this, MapsActivity.class));
+        } else if (id == R.id.nav_record) {
+//            BlankFragment blankFragment = BlankFragment.newInstance("x1", "x2");
+//            fragmentManager.beginTransaction().replace(R.id.content_user_navigation, blankFragment, blankFragment.getTag()).commit();
         } else if (id == R.id.nav_setting) {
             startActivity(new Intent(this, SettingActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 //            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);

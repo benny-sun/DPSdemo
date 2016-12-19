@@ -26,10 +26,9 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        setupWindowAnimations();
         setContentView(R.layout.activity_setting);
 
-
+        setupWindowAnimations();
 
         firebaseAuth = FirebaseAuth.getInstance();
         ActionBar actionBar = getSupportActionBar();
@@ -37,16 +36,12 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void setupWindowAnimations() {
-//        Fade fade = new Fade();
-//        fade.setDuration(1000);
-//        getWindow().setEnterTransition(fade);
-
         Slide slide = new Slide();
         slide.setDuration(500);
         slide.setSlideEdge(Gravity.RIGHT);
         getWindow().setEnterTransition(slide);
 
-        //搭配xml使用
+        //搭配transition/slide.xml使用
 //        Transition slide = TransitionInflater.from(this).inflateTransition(R.transition.slide);
 //        getWindow().setExitTransition(slide);
 //        getWindow().setEnterTransition(slide);
