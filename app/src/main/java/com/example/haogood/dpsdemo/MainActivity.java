@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnIntentLoginOnClick(View view){
         startActivity(new Intent(this, LoginActivity.class));
+        overridePendingTransition(R.anim.rotate_out,R.anim.rotate_in);
         finish();
     }
 }

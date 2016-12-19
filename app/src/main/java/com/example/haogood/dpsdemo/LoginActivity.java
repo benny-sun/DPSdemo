@@ -89,6 +89,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void btnIntentRegisterOnClick(View view){
         startActivity(new Intent(this, MainActivity.class));
+        overridePendingTransition(R.anim.rotate_out, R.anim.rotate_in);
         finish();
     }
 }

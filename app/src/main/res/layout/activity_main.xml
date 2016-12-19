@@ -8,6 +8,14 @@
     android:orientation="vertical"
     tools:context="com.example.haogood.dpsdemo.MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DPS註冊"
+        android:gravity="center"
+        android:paddingBottom="30sp"
+        android:textSize="30sp"/>
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
