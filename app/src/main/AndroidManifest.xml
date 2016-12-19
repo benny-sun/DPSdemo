@@ -44,10 +44,10 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
+            android:label="@string/app_name" />
         <activity
             android:name=".UserNavigation"
-            android:label="@string/title_activity_user_navigation"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SettingActivity"></activity>
     </application>

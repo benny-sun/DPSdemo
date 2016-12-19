@@ -1,5 +1,6 @@
 package com.example.haogood.dpsdemo;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -120,7 +121,8 @@ public class UserNavigation extends AppCompatActivity
         } else if (id == R.id.nav_record) {
             startActivity(new Intent(this, MapsActivity.class));
         } else if (id == R.id.nav_setting) {
-            startActivity(new Intent(this, SettingActivity.class));
+            startActivity(new Intent(this, SettingActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
+//            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         } else if (id == R.id.nav_about) {
 
         }
