@@ -307,6 +307,7 @@ public class UserNavigation extends AppCompatActivity
         if (id == R.id.nav_parking) {
             startActivity(new Intent(this, MapsActivity.class));
         } else if (id == R.id.nav_record) {
+            startActivity(new Intent(this, UserProfileActivity.class));
 //            BlankFragment blankFragment = BlankFragment.newInstance("x1", "x2");
 //            fragmentManager.beginTransaction().replace(R.id.content_user_navigation, blankFragment, blankFragment.getTag()).commit();
         } else if (id == R.id.nav_setting) {
