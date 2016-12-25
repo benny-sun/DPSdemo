@@ -33,21 +33,30 @@
                 android:id="@+id/parkingAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="地址："/>
+                android:text="地址："
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/parkingTimes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="時段："/>
+                android:text="時段："
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/parkingCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="收費："/>
 
         </LinearLayout>
 
-
     </LinearLayout>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="查看"/>
+        android:text="查看"
+        android:visibility="gone"/>
 
 </LinearLayout>

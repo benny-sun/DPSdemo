@@ -7,10 +7,10 @@
     <color name="colorHeightlight">#B6B6B6</color>
 
     <!-- Screens background color-->
-    <color name="bg_screen1">#f64c73</color>
-    <color name="bg_screen2">#20d2bb</color>
-    <color name="bg_screen3">#3395ff</color>
-    <color name="bg_screen4">#c873f4</color>
+    <color name="bg_screen1">#F2F8EA</color>
+    <color name="bg_screen2">#444B54</color>
+    <color name="bg_screen3">#CBC9BB</color>
+    <color name="bg_screen4">#8199A3</color>
 
     <!-- dots inactive colors -->
     <color name="dot_dark_screen1">#d1395c</color>
@@ -24,17 +24,35 @@
     <color name="dot_light_screen3">#93c6fd</color>
     <color name="dot_light_screen4">#e4b5fc</color>
 
+    <!-- dots inactive colors v2 -->
+    <color name="dot_dark_screen1_v2">#E3E7B1</color>
+    <color name="dot_dark_screen2_v2">#B5AFA2</color>
+    <color name="dot_dark_screen3_v2">#E2DBBC</color>
+    <color name="dot_dark_screen4_v2">#B5AFA2</color>
+
+    <!-- dots active colors v2 -->
+    <color name="dot_light_screen1_v2">#FABFA1</color>
+    <color name="dot_light_screen2_v2">#E1B493</color>
+    <color name="dot_light_screen3_v2">#F9EDD7</color>
+    <color name="dot_light_screen4_v2">#E1B493</color>
+
     <array name="array_dot_active">
-        <item>@color/dot_light_screen1</item>
-        <item>@color/dot_light_screen2</item>
-        <item>@color/dot_light_screen3</item>
-        <item>@color/dot_light_screen4</item>
+        <item>@color/dot_light_screen1_v2</item>
+        <item>@color/dot_light_screen2_v2</item>
+        <item>@color/dot_light_screen3_v2</item>
+        <item>@color/dot_light_screen4_v2</item>
     </array>
 
     <array name="array_dot_inactive">
-        <item>@color/dot_dark_screen1</item>
-        <item>@color/dot_dark_screen2</item>
-        <item>@color/dot_dark_screen3</item>
-        <item>@color/dot_dark_screen4</item>
+        <item>@color/dot_dark_screen1_v2</item>
+        <item>@color/dot_dark_screen2_v2</item>
+        <item>@color/dot_dark_screen3_v2</item>
+        <item>@color/dot_dark_screen4_v2</item>
     </array>
+
+    <!-- screen background color -->
+    <color name="large_text_screen1">#6797A1</color>
+    <color name="large_text_screen2">#B5AFA2</color>
+    <color name="large_text_screen3">#F4F1E1</color>
+    <color name="large_text_screen4">#F7D6B5</color>
 </resources>

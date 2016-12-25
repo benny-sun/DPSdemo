@@ -152,16 +152,22 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
 
         buildGoogleApiClient();
 
-        addMarker(new LatLng(24.991295, 121.311442), "大金庫", "快來領錢");
-        addMarker(new LatLng(24.989216, 121.313535), "桃園火車站", "動力火車");
-        addMarker(new LatLng(24.986299, 121.312473), "福安公園", "來散步");
+//        addMarker(new LatLng(24.991295, 121.311442), "大金庫", "快來領錢");
+//        addMarker(new LatLng(24.989216, 121.313535), "桃園火車站", "動力火車");
+//        addMarker(new LatLng(24.986299, 121.312473), "福安公園", "來散步");
+        addMarker(new LatLng(22.754419, 120.331096), "第一科大游泳池", "90元/h");
+        addMarker(new LatLng(22.752064, 120.329141), "樂群停車場", "30元/h");
+        addMarker(new LatLng(22.753419, 120.331481), "鴴池", "180元/h");
+
+        addMarker(new LatLng(24.959458, 121.225904), "中正公園", "70元/h");
+        addMarker(new LatLng(24.958165, 121.227374), "美術館", "99元/h");
 
         mGoogleApiClient.connect();
 
         mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                Toast.makeText(MapsActivity.this, ""+marker.getTitle(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MapsActivity.this, ""+marker.getTitle(), Toast.LENGTH_SHORT).show();
 
                 marker.showInfoWindow();
                 return true;
@@ -178,11 +184,13 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
             public View getInfoContents(Marker marker) {
                 View parkingInfo = getLayoutInflater().inflate(R.layout.activity_parking_lot_info, null);
                 TextView parkingName = (TextView)parkingInfo.findViewById(R.id.parkingName);
-                TextView parkingAddress = (TextView)parkingInfo.findViewById(R.id.parkingAddress);
-                TextView parkingTimes = (TextView)parkingInfo.findViewById(R.id.parkingTimes);
+//                TextView parkingAddress = (TextView)parkingInfo.findViewById(R.id.parkingAddress);
+//                TextView parkingTimes = (TextView)parkingInfo.findViewById(R.id.parkingTimes);
+                TextView parkingCost = (TextView)parkingInfo.findViewById(R.id.parkingCost);
                 parkingName.append(marker.getTitle());
-                parkingAddress.append(marker.getSnippet());
-                parkingTimes.append(marker.getId());
+//                parkingAddress.append(marker.getSnippet());
+//                parkingTimes.append(marker.getId());
+                parkingCost.append(marker.getSnippet());
 
                 return parkingInfo;
             }
@@ -190,7 +198,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     private void addMarker(LatLng place, String title, String snippet){
-        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.mipmap.ic_user_marker);
+        BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.mipmap.parking_marker);
 //        BitmapDescriptor icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA);
 
         MarkerOptions markerOptions = new MarkerOptions();
@@ -210,7 +218,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     protected synchronized void buildGoogleApiClient() {
-        Toast.makeText(this, "buildGoogleApiClient", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "buildGoogleApiClient", Toast.LENGTH_SHORT).show();
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -220,7 +228,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Toast.makeText(this, "onConnected", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "onConnected", Toast.LENGTH_SHORT).show();
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -248,12 +256,12 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
 
     @Override
     public void onConnectionSuspended(int i) {
-        Toast.makeText(this,"onConnectionSuspended",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"onConnectionSuspended",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(this,"onConnectionFailed",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"onConnectionFailed",Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -269,7 +277,7 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         mCurrLocation = mGoogleMap.addMarker(markerOptions);
 
-        Toast.makeText(this,"Location Changed:",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"Location Changed:",Toast.LENGTH_SHORT).show();
 
         //zoom to current position:
         CameraPosition cameraPosition = new CameraPosition.Builder()

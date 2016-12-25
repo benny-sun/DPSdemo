@@ -19,11 +19,21 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+//        String[] infoContent = new String[]{
+//                "哈哈",
+//                "哈哈哈",
+//                "哈哈哈哈",
+//                "哈哈哈哈哈",
+//                "哈哈哈哈哈哈"
+//        };
+
         ArrayList<String> myDataset = new ArrayList<>();
+        ArrayList<String> infoContent = new ArrayList<>();
         for(int i = 0; i < 5; i++){
             myDataset.add(i + "");
+            infoContent.add((i+5)+"");
         }
-        MyAdapter myAdapter = new MyAdapter(myDataset);
+        MyAdapter myAdapter = new MyAdapter(myDataset, infoContent);
         RecyclerView mList = (RecyclerView) findViewById(R.id.recyclerView);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -33,24 +43,27 @@ public class UserProfileActivity extends AppCompatActivity {
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-        private List<String> mData;
+        private List<String> mData, mInfo;
+//        private List<Car> mlist;
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            public TextView mTextView;
+            public TextView mTextView, mTextView2;
             public ViewHolder(View view) {
                 super(view);
                 mTextView = (TextView) view.findViewById(R.id.info_text);
+                mTextView2 = (TextView) view.findViewById(R.id.info_Title);
             }
         }
 
-        public MyAdapter(List<String> data) {
+        public MyAdapter(List<String> data, List<String> info) {
             mData = data;
+            mInfo = info;
         }
 
         @Override
         public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.team_members_cardview, parent, false);
+                    .inflate(R.layout.parking_record, parent, false);
             ViewHolder viewHolder = new ViewHolder(view);
             return viewHolder;
         }
@@ -58,7 +71,7 @@ public class UserProfileActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             holder.mTextView.setText(mData.get(position));
-
+            holder.mTextView2.setText(position+"");
         }
 
         @Override

@@ -1,8 +1,12 @@
 package com.example.haogood.dpsdemo;
 
+import android.*;
+import android.Manifest;
 import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +17,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.Spanned;
 import android.view.LayoutInflater;
@@ -32,6 +37,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.ActivityCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -53,10 +59,12 @@ public class UserNavigation extends AppCompatActivity
     private int[] layouts;
     private Button btnSkip, btnNext;
 
+    private static final int PERMISSION_REQUEST_CODE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+//        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_CHECKIN_PROPERTIES);
         // Making notification bar transparent
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -110,7 +118,13 @@ public class UserNavigation extends AppCompatActivity
                     // move to next screen
                     viewPager.setCurrentItem(current);
                 } else {
-                    startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+                    //檢查位置存取權限
+                    if (checkPermissionExist()){
+                        startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+                    }else{
+                        askLocationPermission();
+                    }
+
                 }
             }
         });
@@ -163,6 +177,8 @@ public class UserNavigation extends AppCompatActivity
 //            dots[i].setText(Html.fromHtml("&#8226;"));
             dots[i].setTextSize(30);
             dots[i].setTextColor(colorsInactive[currentPage]);
+            btnNext.setTextColor(colorsActive[currentPage]);
+            btnSkip.setTextColor(colorsInactive[currentPage]);
             dotsLayout.addView(dots[i]);
         }
 
@@ -303,22 +319,54 @@ public class UserNavigation extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-//        FragmentManager fragmentManager = getSupportFragmentManager();
         if (id == R.id.nav_parking) {
-            startActivity(new Intent(this, MapsActivity.class));
+            //檢查位置存取權限
+            if (checkPermissionExist()){
+                startActivity(new Intent(this, MapsActivity.class));
+            } else {
+                askLocationPermission();
+            }
         } else if (id == R.id.nav_record) {
+            alertDialogNotYet();
             startActivity(new Intent(this, UserProfileActivity.class));
-//            BlankFragment blankFragment = BlankFragment.newInstance("x1", "x2");
-//            fragmentManager.beginTransaction().replace(R.id.content_user_navigation, blankFragment, blankFragment.getTag()).commit();
         } else if (id == R.id.nav_setting) {
             startActivity(new Intent(this, SettingActivity.class), ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
 //            overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         } else if (id == R.id.nav_about) {
-
+            alertDialogNotYet();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void alertDialogNotYet(){
+        new AlertDialog.Builder(this)
+                .setTitle("提示")
+                .setMessage("尚未開放")
+                .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .show();
+    }
+
+    private boolean checkPermissionExist(){
+        int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permission == PackageManager.PERMISSION_DENIED){
+            return false; //目前沒權限
+        } else {
+            return true; //目前有權限
+        }
+    }
+
+    private void askLocationPermission(){
+        ActivityCompat.requestPermissions(
+                UserNavigation.this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                PERMISSION_REQUEST_CODE);
     }
 }

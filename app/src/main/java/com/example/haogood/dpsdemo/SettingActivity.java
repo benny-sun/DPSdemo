@@ -72,7 +72,7 @@ public class SettingActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         firebaseAuth.signOut();
                         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                        finish();
+                        finishAffinity();
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {

@@ -115,8 +115,8 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("前往", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        finish();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                        finishAffinity();
                     }
                 })
                 .setNegativeButton("取消", new DialogInterface.OnClickListener() {
