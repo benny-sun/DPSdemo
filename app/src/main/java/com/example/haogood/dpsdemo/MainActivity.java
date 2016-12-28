@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void registerUser(){
-        final String emailRegex = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
         final String userName = editTextUserName.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(email)){
             Toast.makeText(this, "請輸入信箱", Toast.LENGTH_LONG).show();
             return;
-        }else if(!email.matches(emailRegex)){
+        }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             editTextEmail.setError("email格式有誤，請重新輸入");
             Toast.makeText(this, "email格式有誤，請重新輸入", Toast.LENGTH_LONG).show();
             return;
