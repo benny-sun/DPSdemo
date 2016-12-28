@@ -289,24 +289,3 @@ public class MapsActivity extends AppCompatActivity implements GoogleApiClient.C
         //LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     }
 }
-
-//class parkingInfoWindowAdapter implements GoogleMap.InfoWindowAdapter{
-//
-//    private final View parkingInfo;
-//
-//    parkingInfoWindowAdapter(){
-//        parkingInfo.getLayoutInflater().inflate(R.layout.activity_parking_lot_info, null);
-//    }
-//
-//    @Override
-//    public View getInfoContents(Marker marker) {
-//        TextView parkingName = (TextView)parkingInfo.findViewById(R.id.parkingName);
-//        TextView parkingAddress = (TextView)parkingInfo.findViewById(R.id.parkingAddress);
-//        return null;
-//    }
-//
-//    @Override
-//    public View getInfoWindow(Marker marker) {
-//        return null;
-//    }
-//}
